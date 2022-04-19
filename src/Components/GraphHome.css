@@ -1,0 +1,8 @@
+.graph_elements {
+  display: flex;
+  flex-direction: row;      
+}
+
+.graph_text {
+  padding-left: 10;
+}
