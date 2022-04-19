@@ -31,9 +31,9 @@
 
             <label for="state">State:</label>
             <select name="state" id="state">
-            <option value="alabama">Alabama</option>
-            <option value="alaska">Alaska</option>
-            <option value="arizona">Arizona</option>
+            <option value="Alabama">Alabama</option>
+            <option value="Alaska">Alaska</option>
+            <option value="Arizona">Arizona</option>
             <option value="other">other</option>
             </select>
             <br></br>
@@ -42,19 +42,17 @@
             <select name="violent" id="violent">
             <option value="select">-select-</option>
             <option value="murder">Murder</option>
-            <option value="rape">Rape</option>
-            <option value="assault">Assault</option>
             <option value="robbery">Robbery</option>
+            <option value="assault">Assault</option>
+            <option value="all">All</option>
             </select>
             <t></t>
 
             <label for="property">property:</label>
-            <select name="weapon_category" id="weapon_category">
+            <select name="property" id="property">
             <option value="select">-select-</option>
-            <option value="murder">Murder</option>
-            <option value="rape">Rape</option>
-            <option value="assault">Assault</option>
-            <option value="robbery">Robbery</option>
+            <option value="all">all</option>
+            
             </select>
             <br></br>
             <input type="submit" value="Submit"/>

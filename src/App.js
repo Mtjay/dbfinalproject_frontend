@@ -9,13 +9,15 @@ import Querries from './Services/Querries'
 
 
 function App() {
+var JSONobject = [];
 
   const parseQuerry=(event) => {
     event.preventDefault()
     //crime_type has only 2 values
-    //case 1: if violent or property buttons are selected, ignore crime type and year
     
-    if(event.target.violent.value === "select" && event.target.violent.value === "select"){
+    //case 1: violent and property are not selected, only use year crime_type and state
+    if(event.target.violent.value === "select" && event.target.property.value === "select"){
+      //case1.1: crime_type = violent
       console.log("case 1")
       const Querry = {
         from_year : event.target.from.value,
@@ -23,10 +25,45 @@ function App() {
         crime_type : event.target.crime_type.value,
         state : event.target.state.value
       }
-      Querries.violentCrime(Querry)
+      Querries.violentCrime(Querry).then(res => {
+        JSONobject = res;
+        
+        console.log(res)
+      })
+      //case2.2: crime_type = property
     }
-    //case 2: violent and property are not selected, only use year crime_type and state
-    //case 3: complex querries
+    //case 2: if violent button is selected AND state has input
+    else if(event.target.violent.value !== "select" && event.target.property.value === "select"){
+      //case2.1: murder
+      console.log("case 2.1")
+      const Querry = {
+        state : event.target.state.value,
+        violent : event.target.violent.value
+      }
+      Querries.violentCrime(Querry).then(res =>{
+        JSONobject = res; 
+        console.log(res)
+      })
+      //case2.2: robbery
+      //case2.3: aggravated assault
+      //case2.4: violent
+     // const Querry = {crime}
+    }
+   
+    //case 3: if property button is selected AND state has input
+    else if(event.target.violent.value === "select" && event.target.property.value !== "select"){
+      console.log("case 2.2")
+      const Querry = {
+        state : event.target.state.value,
+        property : event.target.property.value
+      }
+      Querries.violentCrime(Querry).then(res =>{
+        JSONobject = res; 
+        console.log(res)
+      })
+    }
+
+    //case 4: complex querries
     //(optional) case 4: from year to year, show a particular crime
 
     // const Querry = {
@@ -42,7 +79,7 @@ function App() {
 
    // console.log(crimeQuerry)
     
-    
+   
   }
 
 
@@ -50,7 +87,9 @@ function App() {
     <div>      
       <NavigationBar />
       <GraphHome/>
-      <FormViolentCrime parseQuerry={parseQuerry}/>   
+      <FormViolentCrime parseQuerry={parseQuerry}/>  
+      
+      
       <GraphHome/>
       <FormViolentCrime parseQuerry={parseQuerry}/>   
       <GraphHome/>

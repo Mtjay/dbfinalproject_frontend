@@ -3,7 +3,7 @@ const baseUrl = 'http://localhost:3001/api'
 
 const violentCrime = (querry) =>{
     const request = axios.post(baseUrl, querry)
-    //console.log(querry)
+
     return request.then(request=>request.data)
 }
 
